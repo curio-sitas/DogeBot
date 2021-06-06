@@ -37,13 +37,13 @@ def getMentions_Respond_Follow(api, last_mention_id):
         if tweet.in_reply_to_status_id !=None: # Check wether we had already responded to the tweet
             continue
         if bot_user in tweet.text: # Check if it is really a mention tweet
-            if tweet.favorited == False:
+            if tweet.user.following == False: # Respond  follow
+                api.create_friendship(tweet.user.id)
+            if tweet.favorited == False: # Like & reply
                 tweet.favorite()
-                if tweet.user.following == False: # Respond to user and follow
-                    api.create_friendship(tweet.user.id)
-                    api.update_status(
-                        status=f"Hi @{tweet.user.screen_name} 😇 !\nThe dogecoin price is {getDogeCoinPrice()} $ 🐕 !",
-                        in_reply_to_status_id=tweet.id)
+                api.update_status(
+                    status=f"Hi @{tweet.user.screen_name} 😇 !\nThe dogecoin price is {getDogeCoinPrice()} $ 🐕 !",
+                    in_reply_to_status_id=tweet.id)
             
 
                 print("Had one interaction !")
