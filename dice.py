@@ -16,9 +16,13 @@ def getAuth(keys):
     return tweepy.API(auth)
 
 def main():
-    last_mention = 1000
+    
     # Create api object
     api = getAuth(keys)
+    timeline = tweepy.Cursor(api.user_timeline).items()
+    if len(timeline) >= 2 :
+        for tweet in timeline[-2:0]:
+            api.destroy_status(tweet.id)
     api.update_status(status=f"@ApolloNano\n!dice\n😇")
 if __name__ == "__main__":
     main()
