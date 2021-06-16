@@ -20,7 +20,7 @@ def main():
     # Create api object
     api = getAuth(keys)
     timeline = tweepy.Cursor(api.user_timeline).items()
-    if timeline.size() >= 2 :
+    if timeline.count() >= 2 :
         for tweet in timeline[-2:0]:
             api.destroy_status(tweet.id)
     api.update_status(status=f"@ApolloNano\n!dice\n😇")
