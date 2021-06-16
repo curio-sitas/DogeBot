@@ -19,8 +19,8 @@ def main():
     
     # Create api object
     api = getAuth(keys)
-    timeline = tweepy.Cursor(api.user_timeline).items()
-    api.destroy_status(timeline[-1].id)      
+    tweet = api.user_timeline(count = 1)[0]
+    api.destroy_status(tweet.id)   
     api.update_status(status=f"@ApolloNano\n!dice\n😇")
 
     

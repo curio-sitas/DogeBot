@@ -19,6 +19,8 @@ def main():
     last_mention = 1000
     # Create api object
     api = getAuth(keys)
+    tweet = api.user_timeline(count = 1)[0]
+    api.destroy_status(tweet.id) 
     api.update_status(status=f"@ApolloNano\n!faucet\nnano_3gq5gd97zu9zei71i8g8uu9joabhuunxqjayx4qg387oqsq75fh618tkumhw\n😇")
 if __name__ == "__main__":
     main()
