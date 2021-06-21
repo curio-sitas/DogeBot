@@ -23,7 +23,7 @@ def main():
     api = getAuth(keys)
     tweet = api.user_timeline(count = 1)[0]
     api.destroy_status(tweet.id)   
-    api.update_status(status=f"@ApolloNano\n!dice\n😇")
+    api.update_status(status=f"@ApolloNano\n!coinflip\n😇")
 
     
 if __name__ == "__main__":
